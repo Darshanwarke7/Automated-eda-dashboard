@@ -1,0 +1,14 @@
+mean,std,skew,kurt,outliers,missing%,column,type,unique,top_values
+76.0,43.73,0.0,-1.2,0.0,0.0,#,numeric,,
+407.08,99.74,-0.04,-0.76,0.0,0.0,Total,numeric,,
+64.21,28.59,2.31,11.63,3.0,0.0,HP,numeric,,
+72.55,26.6,0.15,-0.33,0.0,0.0,Attack,numeric,,
+68.23,26.92,0.84,1.76,2.0,0.0,Defense,numeric,,
+67.14,28.53,0.5,-0.37,1.0,0.0,Sp. Atk,numeric,,
+66.02,24.2,0.15,-0.61,0.0,0.0,Sp. Def,numeric,,
+68.93,26.75,0.26,-0.55,0.0,0.0,Speed,numeric,,
+1.58,0.68,0.74,-0.57,0.0,0.0,Stage,numeric,,
+,,,,,0.0,Name,categorical,151.0,"{'Bulbasaur': 1, 'Drowzee': 1, 'Krabby': 1, 'Kingler': 1, 'Voltorb': 1}"
+,,,,,0.0,Type 1,categorical,15.0,"{'Water': 28, 'Normal': 22, 'Poison': 14, 'Grass': 12, 'Fire': 12}"
+,,,,,55.63,Type 2,categorical,12.0,"{nan: 84, 'Poison': 19, 'Flying': 19, 'Ground': 6, 'Psychic': 6}"
+,,,,,0.0,Legendary,categorical,2.0,"{False: 147, True: 4}"

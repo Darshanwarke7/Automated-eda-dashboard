@@ -1,0 +1,140 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Automated EDA Dashboard</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Plotly -->
+  <script src="https://cdn.plot.ly/plotly-2.26.0.min.js"></script>
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body class="bg-dark text-light">
+
+  <!-- Hero Section -->
+  <section class="hero-section text-center d-flex flex-column justify-content-center align-items-center">
+    <h1 class="display-4 fw-bold mb-3 text-glow">🧠 Automated EDA Dashboard</h1>
+    <p class="lead mb-4">
+      Upload your CSV file and instantly explore your dataset — automatic summaries,
+      correlations, and insights in one click.
+    </p>
+    <button class="btn btn-gradient px-4 py-2 fw-semibold" onclick="scrollToUpload()">Start Analyzing</button>
+  </section>
+
+  <!-- Features Section -->
+  <section class="features-section container text-center py-5">
+    <div class="row g-4">
+      <div class="col-md-3 col-sm-6">
+        <div class="feature-card p-4 h-100 rounded-4">
+          <div class="fs-1 mb-2">📊</div>
+          <h5>Automatic Summary</h5>
+          <p class="small text-muted">Get dataset shape, missing values, and data type breakdown instantly.</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="feature-card p-4 h-100 rounded-4">
+          <div class="fs-1 mb-2">🧠</div>
+          <h5>Smart Visuals</h5>
+          <p class="small text-muted">Auto-generated histograms, KDEs, and correlation heatmaps.</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="feature-card p-4 h-100 rounded-4">
+          <div class="fs-1 mb-2">⚙️</div>
+          <h5>Interactive Dashboard</h5>
+          <p class="small text-muted">Switch between tabs for numeric, categorical, and correlation insights.</p>
+        </div>
+      </div>
+      <div class="col-md-3 col-sm-6">
+        <div class="feature-card p-4 h-100 rounded-4">
+          <div class="fs-1 mb-2">💾</div>
+          <h5>Download Reports</h5>
+          <p class="small text-muted">Export your EDA summary as CSV for further analysis.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Scroll Divider -->
+  <div class="scroll-divider text-center py-4">
+    <span class="text-muted">Ready to explore?</span>
+    <br>
+    <button class="btn btn-outline-light mt-2" onclick="scrollToUpload()">⬇ Go to Upload</button>
+  </div>
+
+  <!-- Upload & Dashboard Section -->
+  <div id="uploadSection" class="container py-5">
+    <h2 class="text-center mb-3">Upload & Analyze</h2>
+
+    <!-- Upload Card -->
+    <div class="card bg-secondary p-3 mb-3">
+      <form id="uploadForm" enctype="multipart/form-data">
+        <input type="file" name="file" id="fileInput" accept=".csv" class="form-control">
+        <button type="submit" class="btn btn-primary mt-3 w-100">Upload CSV</button>
+      </form>
+
+      <div id="loader" class="text-center mt-3" style="display:none;">
+        <div class="spinner-border text-light" role="status"></div>
+        <p>Processing EDA...</p>
+      </div>
+    </div>
+
+    <!-- Summary Cards -->
+    <div id="summaryCards" class="row g-3 mb-4"></div>
+
+    <!-- Tabs -->
+    <ul class="nav nav-tabs mb-3" id="edaTabs">
+      <li class="nav-item"><a class="nav-link active" data-bs-toggle="tab" href="#overview">Overview</a></li>
+      <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#numeric">Numeric</a></li>
+      <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#categorical">Categorical</a></li>
+      <li class="nav-item"><a class="nav-link" data-bs-toggle="tab" href="#correlation">Correlation</a></li>
+    </ul>
+
+    <!-- Tab Content -->
+    <div class="tab-content">
+      <div class="tab-pane fade show active" id="overview">
+        <div id="dataPreview" class="table-responsive mb-4"></div>
+        <div class="text-end mb-3">
+          <a href="/download_summary" class="btn btn-outline-light">⬇ Download EDA Summary</a>
+        </div>
+        <div id="missingHeatmap" class="text-center"></div>
+      </div>
+
+      <div class="tab-pane fade" id="numeric">
+        <div id="numericPlots" class="d-flex flex-wrap gap-3 justify-content-center"></div>
+      </div>
+
+      <div class="tab-pane fade" id="categorical">
+        <div id="catPlots" class="d-flex flex-wrap gap-3 justify-content-center"></div>
+      </div>
+
+      <div class="tab-pane fade" id="correlation">
+        <div id="corrHeatmap" class="text-center mb-4"></div>
+        <div id="corrBar" style="width:90%;margin:auto;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Smooth scroll script -->
+  <script>
+    function scrollToUpload() {
+      document.getElementById("uploadSection").scrollIntoView({ behavior: "smooth" });
+    }
+  </script>
+
+  <!-- Custom JS -->
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
